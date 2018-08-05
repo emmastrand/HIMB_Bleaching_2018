@@ -13,7 +13,7 @@ library("vegan")
 #Required Data files
 
 # Set Working Directory:
-setwd("~/Dropbox/BIOS_Summer_2017/RAnalysis/Data/") #set working
+setwd("~/MyProjects/HIMB_Bleaching_2018/") #set working
 
 Data <- read.csv("Color_Score_Data.csv", header=T, sep=",", na.string="NA") #read in data fil
 
@@ -33,7 +33,7 @@ Blch <- as.data.frame(PCA.color$scores[,1]) #extract PC1
 Blch  <- cbind(Blch, rownames(Blch), Data$Timepoint, Data$Genotype, Data$Treatment) #make a dataframe of PC1 and experiment factors
 colnames(Blch) <- c("Bleaching.Score", "Fragment.ID", "Timepoint", "Genotype","Treatment") #name columns
 
-pdf("~/Dropbox/BIOS_Summer_2017/RAnalysis/Output/Photographic_Bleaching.pdf")
+pdf("~/MyProjects/HIMB_Bleaching_2018/Photographic_Bleaching.pdf")
 boxplot(Bleaching.Score ~ Genotype*Timepoint, data = Blch, lwd = 1, ylab = 'PC1Color') #plot boxplot of PC1 color score by Genotype and timepoint
 stripchart(Bleaching.Score ~ Genotype*Timepoint, vertical = TRUE, data = Blch, 
            method = "jitter", add = TRUE, pch = 20, col = 'blue') #include all datapoints in blue overlaid on boxplots
