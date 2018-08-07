@@ -30,18 +30,18 @@ PCA.color <- princomp(dist) #run principal components Analysis
 summary(PCA.color) # view variance explained by PCs
 
 Blch <- as.data.frame(PCA.color$scores[,1]) #extract PC1
-Blch  <- cbind(Blch, rownames(Blch), Data$Timepoint, Data$Genotype, Data$Treatment) #make a dataframe of PC1 and experiment factors
-colnames(Blch) <- c("Bleaching.Score", "Fragment.ID", "Timepoint", "Genotype","Treatment") #name columns
+Blch  <- cbind(Blch, rownames(Blch), Data$Date, Data$Side, Data$Treatment) #make a dataframe of PC1 and experiment factors
+colnames(Blch) <- c("Bleaching.Score", "Fragment.ID", "Date", "Side","Treatment") #name columns
 
 pdf("~/MyProjects/HIMB_Bleaching_2018/Photographic_Bleaching.pdf")
-boxplot(Bleaching.Score ~ Genotype*Timepoint, data = Blch, lwd = 1, ylab = 'PC1Color') #plot boxplot of PC1 color score by Genotype and timepoint
-stripchart(Bleaching.Score ~ Genotype*Timepoint, vertical = TRUE, data = Blch, 
+boxplot(Bleaching.Score ~ Treatment*Date, data = Blch, lwd = 1, ylab = 'PC1Color') #plot boxplot of PC1 color score by Genotype and timepoint
+stripchart(Bleaching.Score ~ Treatment*Date, vertical = TRUE, data = Blch, 
            method = "jitter", add = TRUE, pch = 20, col = 'blue') #include all datapoints in blue overlaid on boxplots
 text(x= 0.5, y= 0.5, labels= "dark") #add text to indicate dark and pale on graphic
 text(x= 0.5, y= -1.5, labels= "pale") #add text to indicate dark and pale on graphic
 dev.off()
 
-summary(aov(Bleaching.Score ~ Genotype, data=Blch)) #run an ANOVA by Genotype
+summary(aov(Bleaching.Score ~ Treatment, data=Blch)) #run an ANOVA by Genotype
 hist(Blch$Bleaching.Score) #look at normality of data
 boxplot(Blch$Bleaching.Score) #look at normality of data
 
