@@ -18,6 +18,7 @@ setwd("~/MyProjects/HIMB_Bleaching_2018/") #set working
 Data <- read.csv("Color_Score_Data.csv", header=T, sep=",", na.string="NA") #read in data fil
 
 Data <- subset(Data, Date!="20180802")
+# Data <- subset(Data, Treatment!="Ambient1")
 #Data <- subset(Data, Side=="Front")
 #Data <- subset(Data, Side=="Back")
 
