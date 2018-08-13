@@ -1,6 +1,6 @@
 setwd("~/MyProjects/HIMB_Bleaching_2018/pH_Calibration_Files/") #set working directory
 
-Calib.Data <-read.table("20180811.csv", header=TRUE, sep=",", na.string="NA", as.is=TRUE) #reads in the data files
+Calib.Data <-read.table("20180812.csv", header=TRUE, sep=",", na.string="NA", as.is=TRUE) #reads in the data files
 model <-lm(mVTris ~ TTris, data=Calib.Data) #runs a linear regression of mV as a function of temperature
 coe <- coef(model) #extracts the coeffecients
 R2<-summary(model)$r.squared
