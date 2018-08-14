@@ -40,15 +40,17 @@ SW.chem$pH.Total<-phTris+(mvTris/1000-SW.chem$pH.MV/1000)/(R*(SW.chem$Temperatur
 
 
 pdf("~/MyProjects/HIMB_Bleaching_2018/Output/Daily_Treatment_Measures.pdf")
-par(mfrow=c(3,2))
+par(mfrow=c(2,2))
 plot(SW.chem$Treatment, SW.chem$Temperature, xlab="Treatment", ylab="Temperature°C", ylim=c(23,33))
 plot(SW.chem$Treatment, SW.chem$pH.Total, xlab="Treatment", ylab="pH Total Scale", ylim=c(7.0,8.2))
 plot(SW.chem$Treatment, SW.chem$Salinity, xlab="Treatment", ylab="Salinity psu", ylim=c(30,37))
+plot(SW.chem$Treatment, SW.chem$Light.Reading, xlab="Treatment", ylab="µmol m-2 s-1")
 dev.off()
 
 pdf("~/MyProjects/HIMB_Bleaching_2018/Output/Daily_Tank_Measures.pdf")
-par(mfrow=c(1,3))
+par(mfrow=c(2,2))
 plot(SW.chem$Sample.ID, SW.chem$Temperature, xlab="Tank", ylab="Temperature°C", ylim=c(23,33),las=2)
 plot(SW.chem$Sample.ID, SW.chem$pH.Total, xlab="Tank", ylab="pH Total Scale", ylim=c(7.0,8.2),las=2)
 plot(SW.chem$Sample.ID, SW.chem$Salinity, xlab="Tank", ylab="Salinity psu", ylim=c(30,37),las=2)
+plot(SW.chem$Sample.ID, SW.chem$Light.Reading, xlab="Treatment", ylab="µmol m-2 s-1")
 dev.off()
