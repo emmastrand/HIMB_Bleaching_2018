@@ -49,13 +49,15 @@ trts <- unique(Data[,c('TimePoint','Fragment.ID','Treatment')])
 Blch <- cbind(Blch, trts[order(trts$Fragment.ID, trts$TimePoint),])
 colnames(Blch) <- c("Bleaching.Score", "Timepoint", "Fragment.ID", "Treatment") #name columns
 
+Blch$Timepoint  = factor(Blch$Timepoint, levels=c("Day1", "Day4", "Day6", "Day8", "Day11"))
+
 pdf("~/MyProjects/HIMB_Bleaching_2018/Output/Photographic_Bleaching.pdf")
 par(mar=c(8,5,2,2))
 boxplot(Bleaching.Score ~ Treatment*Timepoint, data = Blch, lwd = 1, ylab = 'PC1Color', las=2) #plot boxplot of PC1 color score by Genotype and timepoint
 stripchart(Bleaching.Score ~ Treatment*Timepoint, vertical = TRUE, data = Blch, 
            method = "jitter", add = TRUE, pch = 20, col = 'blue') #include all datapoints in blue overlaid on boxplots
-text(x= 0.5, y= max(Blch$Bleaching.Score-0.3), labels= "dark") #add text to indicate dark and pale on graphic
-text(x= 0.5, y= min(Blch$Bleaching.Score+0.5), labels= "pale") #add text to indicate dark and pale on graphic
+text(x= 0.5, y= max(Blch$Bleaching.Score-0.3), labels= "pale") #add text to indicate dark and pale on graphic
+text(x= 0.5, y= min(Blch$Bleaching.Score+0.5), labels= "dark") #add text to indicate dark and pale on graphic
 dev.off()
 
 summary(aov(Bleaching.Score ~ Treatment*Timepoint, data=Blch)) #run an ANOVA by Genotype
